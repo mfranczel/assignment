@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: notebook-fe
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: notebook-fe
+  template:
+    metadata:
+      labels:
+        app: notebook-fe
+    spec:
+      containers:
+        - name: notebook-fe
+          image: mfranczel/notebook-fe:latest
+          imagePullPolicy: "Always"
+          ports:
+            - containerPort: 80         
+          resources:
+            limits:
+              cpu: "1"
+              memory: "512Mi"
+            requests:
+              cpu: "0.5"
+              memory: "256Mi"
